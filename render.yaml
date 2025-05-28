@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: attendee
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn attendee.wsgi
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+  - type: worker
+    name: attendee-worker
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: celery -A attendee worker -l info
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
