@@ -85,11 +85,12 @@ import logging
 import hmac
 import hashlib
 import base64
+import os
 
 from flask import Flask, request
 
 app = Flask(__name__)
-port = 5005
+port = int(os.environ.get('PORT', 5000))
 
 # Add your secret you got from the dashboard here
 webhook_secret = "<YOUR_SECRET>"
@@ -145,7 +146,7 @@ import express from "express";
 import crypto from "crypto";
 
 const app  = express();
-const port = 5005;
+const port = process.env.PORT || 5005;
 
 // Put the base‑64 secret from your dashboard here
 const WEBHOOK_SECRET = "<YOUR_SECRET>";
