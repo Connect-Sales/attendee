@@ -73,6 +73,8 @@ RUN apt-get install -y gstreamer1.0-tools gstreamer1.0-plugins-base gstreamer1.0
 # Alias python3 to python
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
+RUN python manage.py migrate
+
 FROM base AS deps
 
 # Copy only requirements.txt first to leverage Docker cache
